@@ -1976,12 +1976,10 @@ body .site-alteration-overlay::after {
 .plan-purpose-hotspot {
   position: absolute;
   z-index: 2;
-  left: 8.2%;
-  bottom: 7.5%;
-  width: 11%;
-  min-width: 4.5rem;
-  height: 5.5%;
-  min-height: 2.75rem;
+  left: 3.1%;
+  bottom: 1.7%;
+  width: 27.4%;
+  height: 13.8%;
   padding: 0;
   border: 0;
   background: transparent;
@@ -2024,10 +2022,10 @@ body .site-alteration-overlay::after {
     display: block;
   }
   .plan-purpose-hotspot {
-    left: 6.5%;
-    bottom: 4%;
-    width: 20%;
-    height: 16%;
+    left: 3.1%;
+    bottom: 1.7%;
+    width: 27.4%;
+    height: 13.8%;
     min-width: 4.5rem;
     min-height: 2.75rem;
   }
