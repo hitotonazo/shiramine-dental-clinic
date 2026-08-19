@@ -1,0 +1,2 @@
+.skip-link { position: fixed; z-index: 100; top: 0.75rem; left: 0.75rem; padding: 0.7rem 1rem; color: #fff; background: #563f35; transform: translateY(-200%); transition: transform 160ms ease; }
+.skip-link:focus { transform: translateY(0); }

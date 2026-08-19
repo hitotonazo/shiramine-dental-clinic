@@ -1,0 +1,32 @@
+@use '../foundation/variables' as *;
+
+.site-header { position: relative; z-index: 10; border-bottom: 1px solid rgba($color-border, 0.8); background: rgba($color-surface, 0.97); }
+.site-header__inner { display: flex; align-items: center; min-height: 5.75rem; gap: clamp(1rem, 3vw, 2.4rem); }
+.site-logo { display: block; flex: 0 0 auto; width: clamp(10.5rem, 16vw, 14.5rem); }
+.site-header__navigation { display: flex; flex: 1; align-items: center; justify-content: flex-end; gap: clamp(1rem, 2.4vw, 2rem); }
+.site-header__navigation ul { display: flex; align-items: center; justify-content: flex-end; gap: clamp(0.85rem, 1.8vw, 1.45rem); }
+.site-header__navigation li { font-size: 0.9375rem; font-weight: 700; white-space: nowrap; }
+.site-header__navigation li a { display: block; padding-block: 0.5rem; transition: color 180ms ease; &:hover { color: $color-primary; } }
+.site-header__reservation { flex: 0 0 auto; min-height: 2.85rem; padding-inline: 1.15rem; font-size: 0.9375rem; }
+.site-header__menu-button { display: none; }
+.site-header { position: sticky; z-index: 100; top: 0; backdrop-filter: blur(12px); }
+.site-header__actions { display: flex; align-items: center; gap: 0.65rem; }
+.site-header__reset { min-height: 2.85rem; padding: 0.5rem 0.8rem; color: $color-primary-dark; border: 1px solid $color-border; border-radius: 999px; background: transparent; font-size: 0.8125rem; font-weight: 700; cursor: pointer; &:hover { background: $color-pink; } }
+.site-header__reset--mobile { display: none; margin-left: auto; }
+
+@media (max-width: $bp-tablet) {
+  .site-header { background: $color-surface; backdrop-filter: none; }
+  .site-header__inner { min-height: 5.25rem; justify-content: space-between; }
+  .site-header__menu-button { display: inline-flex; flex: 0 0 3rem; flex-direction: column; align-items: center; justify-content: center; width: 3rem; min-height: 3.5rem; gap: 0.65rem; padding: 0.25rem; color: $color-heading; border: 0; background: transparent; font-size: 0.6875rem; font-weight: 700; line-height: 1; cursor: pointer; }
+  .site-header__menu-icon, .site-header__menu-icon::before, .site-header__menu-icon::after { display: block; width: 1.75rem; height: 2px; border-radius: 999px; background: currentColor; content: ''; transition: transform 180ms ease; }
+  .site-header__menu-icon { position: relative; } .site-header__menu-icon::before { position: absolute; top: -0.5rem; } .site-header__menu-icon::after { position: absolute; top: 0.5rem; }
+  .site-header__menu-button[aria-expanded='true'] .site-header__menu-icon { background: transparent; } .site-header__menu-button[aria-expanded='true'] .site-header__menu-icon::before { top: 0; transform: rotate(45deg); } .site-header__menu-button[aria-expanded='true'] .site-header__menu-icon::after { top: 0; transform: rotate(-45deg); }
+  .site-header__navigation { position: fixed; z-index: 1; top: 0; right: auto; bottom: 0; left: 0; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; width: 100vw; min-width: 100vw; height: 100dvh; gap: 1.35rem; max-height: none; padding: 7rem clamp(1.5rem, 8vw, 4rem) 2rem; overflow-y: auto; border: 0; background: rgba($color-surface, 0.99); opacity: 0; pointer-events: none; visibility: hidden; transition: opacity 220ms ease, visibility 220ms; }
+  .site-header__navigation.is-open { max-height: none; border: 0; opacity: 1; pointer-events: auto; visibility: visible; }
+  .site-header__navigation ul, .site-header__actions { width: min(100%, 34rem); margin-inline: auto; } .site-header__navigation ul { display: grid; justify-content: stretch; gap: 0; } .site-header__navigation li { border-bottom: 1px solid rgba($color-border, 0.75); font-size: clamp(1rem, 2.4vw, 1.25rem); } .site-header__navigation li a { padding-block: 0.95rem; }
+  .site-header__actions { flex-wrap: wrap; } .site-header__inner { position: relative; z-index: 2; } .site-header__menu-button, .site-header__actions { position: relative; z-index: 2; }
+  .site-header__actions .site-header__reset { display: none; } .site-header__reset--mobile { display: block; }
+  .site-header__reservation { width: 100%; }
+}
+body.menu-is-open { overflow: hidden; }
+@media (max-width: 480px) { .site-header__inner { gap: 0.4rem; } .site-logo { width: clamp(8.25rem, 39vw, 10rem); } .site-header__actions { gap: 0.35rem; } .site-header__reset { min-height: 2.45rem; padding-inline: 0.6rem; font-size: 0.625rem; } .site-header__reservation { min-height: 2.45rem; padding-inline: 0.75rem; font-size: 0.75rem; } }

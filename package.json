@@ -1,0 +1,12 @@
+{
+  "name": "shiramine-dental-clinic",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "sass scss/style.scss assets/css/style.css --no-source-map --style=expanded",
+    "watch": "sass --watch scss/style.scss:assets/css/style.css --no-source-map --style=expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}

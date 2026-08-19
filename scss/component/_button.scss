@@ -1,0 +1,27 @@
+@use '../foundation/variables' as *;
+
+.c-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3.25rem;
+  padding: 0.75rem 1.45rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-align: center;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+
+  &:hover { transform: translateY(-2px); }
+  &:disabled, &[aria-disabled='true'] { pointer-events: none; opacity: 0.5; }
+}
+
+.c-button--primary { color: #fff; background: $color-primary; &:hover { background: $color-primary-dark; } }
+.c-button--secondary { color: $color-primary-dark; border-color: $color-primary; background: $color-secondary; &:hover { background: $color-pink; } }
+.c-button--system { color: #fff; background: #50655a; &:hover { background: #35483e; } }
+.c-button::after { width: 1rem; height: 1rem; background: currentColor; content: ''; mask: url('../../images/icon.svg') center / contain no-repeat; }

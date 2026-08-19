@@ -1,0 +1,6 @@
+@use '../foundation/variables' as *;
+
+.l-container {
+  width: min(100% - clamp(2rem, 5vw, 5rem), $container-max);
+  margin-inline: auto;
+}
