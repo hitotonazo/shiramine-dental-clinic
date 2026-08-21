@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const SHARE_CONFIG = {
-    text: '親子三代で通える歯医者。\n「白峰デンタルクリニック」を調査しました。\n\n#おかしなサイト\nhttps://x.com/ARG_ObserverX'
+    text: '「これからも、地域の皆さまとともに。」\n地域って、本当に白峰だけなのでしょうか。\n\n#おかしなサイト\nhttps://x.com/ARG_ObserverX'
   };
   const init = () => {
     if (!window.ShiramineProgress?.has('topTruth')) { location.replace('index.html'); return; }
