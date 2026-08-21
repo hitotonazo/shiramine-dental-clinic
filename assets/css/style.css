@@ -1029,6 +1029,7 @@ body .site-alteration-overlay::after {
 }
 
 .access-layout__map {
+  position: relative;
   overflow: hidden;
   border: 0.5rem solid #fff;
   border-radius: 1rem;
@@ -1036,9 +1037,101 @@ body .site-alteration-overlay::after {
 }
 
 .access-layout__map img {
+  display: block;
   width: 100%;
   aspect-ratio: 1.25;
   object-fit: cover;
+  filter: saturate(0.75) brightness(1.06);
+}
+
+.access-map-label {
+  position: absolute;
+  padding: 0.18rem 0.32rem;
+  color: #53483f;
+  border: 1px solid rgba(128, 105, 91, 0.22);
+  border-radius: 0.2rem;
+  background: rgba(255, 252, 247, 0.9);
+  font-size: clamp(0.52rem, 1vw, 0.75rem);
+  line-height: 1.35;
+  box-shadow: 0 1px 3px rgba(70, 55, 45, 0.1);
+}
+
+.access-map-label--home {
+  top: 17%;
+  left: 13%;
+}
+
+.access-map-label--school {
+  top: 35%;
+  left: 28%;
+}
+
+.access-map-label--junior {
+  top: 62%;
+  left: 23%;
+}
+
+.access-map-label--clinic {
+  top: 28%;
+  right: 11%;
+}
+
+.access-map-label--factory {
+  bottom: 19%;
+  right: 15%;
+}
+
+.access-map-label--dental {
+  bottom: 9%;
+  left: 42%;
+  color: #7e4038;
+  font-weight: 700;
+}
+
+.access-layout__map small {
+  display: none;
+}
+
+.access-layout__map.is-record-map {
+  cursor: pointer;
+  border-color: #26292b;
+  border-radius: 0;
+  background: #08090a;
+  box-shadow: 0 0 0 1px #672126, 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
+}
+
+.access-layout__map.is-record-map img {
+  filter: grayscale(0.72) saturate(0.25) brightness(0.43) contrast(1.22);
+}
+
+.access-layout__map.is-record-map::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(rgba(145, 30, 35, 0.05) 1px, transparent 1px);
+  background-size: 100% 4px;
+}
+
+.access-layout__map.is-record-map .access-map-label {
+  z-index: 2;
+  color: #f0eeee;
+  border-color: #76262c;
+  border-radius: 0;
+  background: rgba(9, 10, 11, 0.9);
+  box-shadow: 0 0 0.4rem rgba(166, 35, 43, 0.18);
+}
+
+.access-layout__map.is-record-map small {
+  display: inline;
+  margin-left: 0.2rem;
+  color: #da4850;
+  font: 700 0.8em/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.access-layout__map.is-record-map:hover, .access-layout__map.is-record-map:focus-visible {
+  box-shadow: 0 0 0 1px #a83239, 0 0 1rem rgba(190, 38, 48, 0.28);
 }
 
 @media (max-width: 767px) {
@@ -1177,6 +1270,37 @@ body .site-alteration-overlay::after {
   color: #5d514a;
   font: inherit;
   font-weight: 700;
+}
+
+.tooth-flow--outcomes {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.tooth-flow--phase1 {
+  grid-template-columns: 1fr;
+}
+
+.tooth-flow--phase1 .tooth-flow__restricted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-height: 5rem;
+  padding: 1rem;
+}
+
+.tooth-flow--phase1 .tooth-flow__restricted b {
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+}
+
+.tooth-flow--phase1 .tooth-flow__restricted span {
+  position: relative;
+  z-index: 1;
+  min-width: 5.5em;
+  letter-spacing: -0.06em;
 }
 
 .tooth-flow__restricted[data-phase1-mosaic] {
@@ -1376,6 +1500,34 @@ body .site-alteration-overlay::after {
   filter: saturate(0.7);
 }
 
+.specimen-list button[data-id=SH-052] {
+  transition: filter 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.specimen-list button[data-id=SH-052]:hover, .specimen-list button[data-id=SH-052]:focus-visible {
+  filter: brightness(1.06);
+  border-color: #873238;
+  box-shadow: inset 0.18rem 0 rgba(169, 42, 49, 0.55);
+}
+
+.specimen-list button[data-id=SH-052].is-anomaly-cue {
+  animation: specimen-anomaly-cue 0.28s steps(2, end) 1;
+}
+
+@keyframes specimen-anomaly-cue {
+  0%, 100% {
+    filter: brightness(1);
+    transform: translate(0);
+  }
+  35% {
+    filter: brightness(1.08);
+    transform: translate(1px, -1px);
+  }
+  70% {
+    filter: brightness(0.97);
+    transform: translate(-1px, 1px);
+  }
+}
 .specimen-detail {
   display: grid;
   grid-template-columns: minmax(12rem, 1fr) minmax(13rem, 1fr);
@@ -1432,6 +1584,23 @@ body .site-alteration-overlay::after {
   cursor: pointer;
 }
 
+.record-return-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1rem;
+  color: #fff;
+  background: #9f2028;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.record-return-top:hover, .record-return-top:focus-visible {
+  background: #c02a33;
+}
+
 .specimen-detail > img[data-open-life] {
   cursor: pointer;
   transition: filter 0.2s, box-shadow 0.2s;
@@ -1442,6 +1611,40 @@ body .site-alteration-overlay::after {
   box-shadow: 0 0 0 2px #bd2931, 0 0 1.25rem rgba(202, 34, 44, 0.45);
 }
 
+.specimen-detail > img.is-sh052-specimen {
+  animation: sh052-specimen-noise 2.4s steps(2, end) infinite;
+}
+
+@keyframes sh052-specimen-noise {
+  0%, 100% {
+    filter: saturate(0.55) brightness(0.72) contrast(1.1);
+    transform: translate(0);
+  }
+  12% {
+    filter: saturate(0.95) brightness(1.2) contrast(1.5) hue-rotate(-8deg);
+    transform: translate(3px, -2px) scale(1.01);
+  }
+  17% {
+    filter: saturate(0.2) brightness(0.42) contrast(1.65);
+    transform: translate(-4px, 2px);
+  }
+  22% {
+    filter: saturate(0.85) brightness(1.06) contrast(1.45);
+    transform: translate(2px, 1px);
+  }
+  48% {
+    filter: saturate(0.42) brightness(0.58) contrast(1.35);
+    transform: translate(-2px, 1px);
+  }
+  53% {
+    filter: saturate(0.95) brightness(1.15) contrast(1.55) hue-rotate(8deg);
+    transform: translate(4px, -1px) scale(1.015);
+  }
+  58% {
+    filter: saturate(0.35) brightness(0.48) contrast(1.45);
+    transform: translate(-3px, 2px);
+  }
+}
 .life-record {
   margin-top: clamp(3rem, 7vw, 5rem);
   padding-top: 1.5rem;
@@ -1685,12 +1888,21 @@ body .site-alteration-overlay::after {
   .specimen-layout, .life-layout {
     grid-template-columns: 1fr;
   }
+  .specimen-list button {
+    min-height: 4.25rem;
+  }
+  .specimen-list img {
+    width: 5.4rem;
+    height: 4rem;
+  }
   .specimen-detail {
     grid-template-columns: 1fr;
     min-height: 0;
   }
   .specimen-detail > img {
-    height: 15rem;
+    height: auto;
+    min-height: 17rem;
+    max-height: 24rem;
   }
   .record-map {
     min-height: 22rem;
@@ -1860,7 +2072,7 @@ body .site-alteration-overlay::after {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .record-map.has-residents i {
+  .record-map.has-residents i, .specimen-list button[data-id=SH-052].is-anomaly-cue, .specimen-detail > img.is-sh052-specimen {
     animation: none;
   }
 }
@@ -1927,35 +2139,29 @@ body .site-alteration-overlay::after {
   padding-top: 1.25rem;
   border-top: 1px solid #353638;
 }
-
 .plan-related[hidden] {
   display: none;
 }
-
 .plan-related > header {
   margin-bottom: 0.8rem;
 }
-
 .plan-related > header p {
   margin: 0;
   color: #c94349;
   font-size: 0.78rem;
   letter-spacing: 0.1em;
 }
-
+.plan-related > header small {
+  color: #aaa;
+}
 .plan-related h3 {
   margin: 0.35rem 0;
   color: #eee;
   font: 600 clamp(1.15rem, 2.5vw, 1.6rem)/1.4 "Noto Serif JP", "Yu Mincho", serif;
 }
-
 .plan-related h3 span {
   font-size: 0.75em;
   font-weight: 500;
-}
-
-.plan-related > header small {
-  color: #aaa;
 }
 
 .plan-sheet {
@@ -1965,7 +2171,6 @@ body .site-alteration-overlay::after {
   border: 1px solid #4b4640;
   background: #171513;
 }
-
 .plan-sheet > img {
   display: block;
   width: 100%;
@@ -1976,17 +2181,17 @@ body .site-alteration-overlay::after {
 .plan-purpose-hotspot {
   position: absolute;
   z-index: 2;
-  left: 3.1%;
+  left: 2.7%;
   bottom: 1.7%;
-  width: 27.4%;
-  height: 13.8%;
+  width: 45.6%;
+  height: 20.8%;
   padding: 0;
+  overflow: hidden;
   border: 0;
   background: transparent;
   cursor: pointer;
-  transition: filter 0.2s;
+  transition: filter 0.2s, box-shadow 0.2s;
 }
-
 .plan-purpose-hotspot::after {
   position: absolute;
   inset: 0;
@@ -1996,20 +2201,101 @@ body .site-alteration-overlay::after {
   opacity: 0;
   transition: opacity 0.2s;
 }
-
 .plan-purpose-hotspot:hover, .plan-purpose-hotspot:focus-visible {
-  filter: brightness(1.12);
+  filter: brightness(1.06);
+  box-shadow: inset 0 0 0 1px rgba(70, 49, 31, 0.2), 0 0 0.7rem rgba(255, 237, 194, 0.08);
 }
-
 .plan-purpose-hotspot:hover::after, .plan-purpose-hotspot:focus-visible::after {
   opacity: 1;
 }
-
 .plan-purpose-hotspot:focus-visible {
   outline: 2px solid rgba(83, 54, 35, 0.62);
   outline-offset: 2px;
 }
 
+.plan-purpose-revealed {
+  position: absolute;
+  inset: 37% 3% 5%;
+  display: none;
+  align-items: center;
+  padding-left: 2%;
+  color: #17130e;
+  background: #c6b183;
+  font: 700 clamp(0.48rem, 1.55vw, 1.45rem)/1.45 "Noto Serif JP", "Yu Mincho", serif;
+  text-align: left;
+  letter-spacing: 0.04em;
+}
+
+.is-plan-revealed .plan-purpose-revealed {
+  display: flex;
+}
+
+.plan-note-mask {
+  position: absolute;
+  z-index: 1;
+  right: 1.9%;
+  bottom: 7.6%;
+  display: grid;
+  width: 28.5%;
+  min-height: 11.5%;
+  padding: 0.6% 1.1%;
+  color: #211b13;
+  background: #c7b38b;
+  font: 600 clamp(0.34rem, 0.85vw, 0.78rem)/1.45 "Noto Serif JP", "Yu Mincho", serif;
+  text-align: left;
+}
+
+.plan-purpose-mobile {
+  display: none;
+}
+
+.plan-project-detected {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  color: #b5bbb8;
+  border: 1px solid #443638;
+  background: #121315;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.plan-project-detected[hidden] {
+  display: none;
+}
+.plan-project-detected.is-visible {
+  opacity: 1;
+}
+.plan-project-detected strong {
+  color: #d9dcda;
+  font-size: clamp(1.15rem, 4vw, 1.8rem);
+}
+.plan-project-detected small, .plan-project-detected span {
+  color: #8f494d;
+  font-size: 0.72rem;
+}
+
+.plan-related.is-plan-cue .plan-purpose-hotspot {
+  animation: plan-purpose-cue 0.28s steps(2, end) 1;
+}
+
+@keyframes plan-purpose-cue {
+  0%, 100% {
+    filter: brightness(1);
+    transform: translate(0);
+  }
+  35% {
+    filter: brightness(1.09) blur(0.7px);
+    transform: translate(1px, -1px);
+  }
+  70% {
+    filter: brightness(0.96);
+    transform: translate(-1px, 1px);
+  }
+}
 @media (max-width: 767px) {
   .plan-related {
     margin-right: -0.55rem;
@@ -2022,17 +2308,43 @@ body .site-alteration-overlay::after {
     display: block;
   }
   .plan-purpose-hotspot {
-    left: 3.1%;
-    bottom: 1.7%;
-    width: 27.4%;
-    height: 13.8%;
-    min-width: 4.5rem;
-    min-height: 2.75rem;
+    display: none;
+  }
+  .plan-purpose-mobile {
+    display: grid;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 1rem;
+    color: #241d14;
+    border: 1px solid #76664d;
+    background: #c8b58e;
+    font: 600 clamp(0.86rem, 3.7vw, 1rem)/1.7 "Noto Serif JP", "Yu Mincho", serif;
+    text-align: left;
+    cursor: pointer;
+  }
+  .plan-purpose-mobile b {
+    font-size: 1.25em;
+    letter-spacing: 0.12em;
+  }
+  .plan-purpose-mobile i {
+    color: #080806;
+    font-style: normal;
+    letter-spacing: -0.08em;
+  }
+  .plan-related.is-plan-cue .plan-purpose-mobile {
+    animation: plan-purpose-cue 0.28s steps(2, end) 1;
+  }
+  .plan-note-mask {
+    font-size: clamp(0.2rem, 1.55vw, 0.45rem);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .plan-purpose-hotspot, .plan-purpose-hotspot::after {
+  .plan-purpose-hotspot, .plan-purpose-hotspot::after, .plan-purpose-mobile, .plan-project-detected {
     transition: none;
+  }
+  .plan-related.is-plan-cue .plan-purpose-hotspot, .plan-related.is-plan-cue .plan-purpose-mobile {
+    animation: none;
   }
 }
 .truth-page {

@@ -42,7 +42,7 @@
         <nav class="site-footer__navigation" aria-label="フッターナビゲーション"><ul>${links}<li><a href="${topLink('#reservation')}">WEB予約</a></li></ul></nav>
         <section class="site-footer__information" aria-labelledby="clinic-information-title">
           <h2 id="clinic-information-title">診療時間・アクセス</h2>
-          <dl><div><dt>診療時間</dt><dd>平日 9:00–18:00／土曜 9:00–13:00</dd></div><div><dt>休診日</dt><dd>日曜・祝日</dd></div><div><dt>所在地</dt><dd>白峰町中央 0-0-0（設定準備中）</dd></div></dl>
+          <dl><div><dt>診療時間</dt><dd>平日 9:00–18:00／土曜 9:00–13:00</dd></div><div><dt>休診日</dt><dd>日曜・祝日</dd></div><div><dt>所在地</dt><dd>白峰町中央 0-0-0</dd></div></dl>
         </section>
       </div>
       <div class="site-footer__bottom"><div class="l-container"><small>&copy;ぺいぽぴー<br>※このWebサイトの内容はフィクションであり、実在の人物・団体とは一切関係ありません。</small></div></div>

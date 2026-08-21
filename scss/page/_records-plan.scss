@@ -1,0 +1,125 @@
+.plan-related {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #353638;
+  &[hidden] { display: none; }
+  > header { margin-bottom: .8rem; }
+  > header p { margin: 0; color: #c94349; font-size: .78rem; letter-spacing: .1em; }
+  > header small { color: #aaa; }
+  h3 { margin: .35rem 0; color: #eee; font: 600 clamp(1.15rem,2.5vw,1.6rem)/1.4 'Noto Serif JP','Yu Mincho',serif; }
+  h3 span { font-size: .75em; font-weight: 500; }
+}
+
+.plan-sheet {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #4b4640;
+  background: #171513;
+  > img { display: block; width: 100%; height: auto; filter: sepia(.08) brightness(.78) contrast(1.06); }
+}
+
+.plan-purpose-hotspot {
+  position: absolute;
+  z-index: 2;
+  left: 2.7%;
+  bottom: 1.7%;
+  width: 45.6%;
+  height: 20.8%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: filter .2s, box-shadow .2s;
+  &::after { position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.035) 4px,transparent 5px); content: ''; pointer-events: none; opacity: 0; transition: opacity .2s; }
+  &:hover, &:focus-visible { filter: brightness(1.06); box-shadow: inset 0 0 0 1px rgba(70,49,31,.2), 0 0 .7rem rgba(255,237,194,.08); }
+  &:hover::after, &:focus-visible::after { opacity: 1; }
+  &:focus-visible { outline: 2px solid rgba(83,54,35,.62); outline-offset: 2px; }
+}
+
+.plan-purpose-revealed {
+  position: absolute;
+  inset: 37% 3% 5%;
+  display: none;
+  align-items: center;
+  padding-left: 2%;
+  color: #17130e;
+  background: #c6b183;
+  font: 700 clamp(.48rem,1.55vw,1.45rem)/1.45 'Noto Serif JP','Yu Mincho',serif;
+  text-align: left;
+  letter-spacing: .04em;
+}
+.is-plan-revealed .plan-purpose-revealed { display: flex; }
+
+.plan-note-mask {
+  position: absolute;
+  z-index: 1;
+  right: 1.9%;
+  bottom: 7.6%;
+  display: grid;
+  width: 28.5%;
+  min-height: 11.5%;
+  padding: .6% 1.1%;
+  color: #211b13;
+  background: #c7b38b;
+  font: 600 clamp(.34rem,.85vw,.78rem)/1.45 'Noto Serif JP','Yu Mincho',serif;
+  text-align: left;
+}
+
+.plan-purpose-mobile { display: none; }
+
+.plan-project-detected {
+  display: grid;
+  justify-items: center;
+  gap: .35rem;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  color: #b5bbb8;
+  border: 1px solid #443638;
+  background: #121315;
+  font-family: ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing: .12em;
+  opacity: 0;
+  transition: opacity .4s;
+  &[hidden] { display: none; }
+  &.is-visible { opacity: 1; }
+  strong { color: #d9dcda; font-size: clamp(1.15rem,4vw,1.8rem); }
+  small, span { color: #8f494d; font-size: .72rem; }
+}
+
+.plan-related.is-plan-cue .plan-purpose-hotspot { animation: plan-purpose-cue .28s steps(2,end) 1; }
+@keyframes plan-purpose-cue {
+  0%, 100% { filter: brightness(1); transform: translate(0); }
+  35% { filter: brightness(1.09) blur(.7px); transform: translate(1px,-1px); }
+  70% { filter: brightness(.96); transform: translate(-1px,1px); }
+}
+
+@media (max-width: 767px) {
+  .plan-related { margin-right: -.55rem; margin-left: -.55rem; }
+  .plan-related > header { padding: 0 .55rem; }
+  .plan-related h3 span { display: block; }
+  .plan-purpose-hotspot { display: none; }
+  .plan-purpose-mobile {
+    display: grid;
+    gap: .5rem;
+    width: 100%;
+    margin-top: .75rem;
+    padding: 1rem;
+    color: #241d14;
+    border: 1px solid #76664d;
+    background: #c8b58e;
+    font: 600 clamp(.86rem,3.7vw,1rem)/1.7 'Noto Serif JP','Yu Mincho',serif;
+    text-align: left;
+    cursor: pointer;
+    b { font-size: 1.25em; letter-spacing: .12em; }
+    i { color: #080806; font-style: normal; letter-spacing: -.08em; }
+  }
+  .plan-related.is-plan-cue .plan-purpose-mobile { animation: plan-purpose-cue .28s steps(2,end) 1; }
+  .plan-note-mask { font-size: clamp(.2rem,1.55vw,.45rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan-purpose-hotspot, .plan-purpose-hotspot::after, .plan-purpose-mobile, .plan-project-detected { transition: none; }
+  .plan-related.is-plan-cue .plan-purpose-hotspot, .plan-related.is-plan-cue .plan-purpose-mobile { animation: none; }
+}

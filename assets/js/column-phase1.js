@@ -6,7 +6,7 @@
     const mosaic = document.querySelector('[data-phase1-mosaic]');
     const link = document.querySelector('[data-phase1-record-link]');
     if (!flow || !mosaic || !link || !window.ShiramineProgress) return;
-    const reveal = () => { flow.hidden = false; mosaic.textContent = '保存対象'; mosaic.disabled = true; link.hidden = false; };
+    const reveal = () => { flow.hidden = false; mosaic.querySelector('[data-phase1-subject]').textContent = '保存対象'; mosaic.querySelector('[data-phase1-storage]').textContent = '院内保管'; mosaic.disabled = true; link.hidden = false; };
     normalFlow && (normalFlow.hidden = true);
     if (window.ShiramineProgress.has('foundPhase1')) { reveal(); return; }
     flow.hidden = false;

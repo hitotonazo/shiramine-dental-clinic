@@ -1934,143 +1934,216 @@ body .site-alteration-overlay::after {
   overflow: hidden;
 }
 
-.archive-attachment {
-  position: relative;
-  display: grid;
-  grid-template-columns: 4rem 1fr;
-  gap: 1.25rem;
-  width: 100%;
-  min-height: 8rem;
+.plan-related {
   margin-top: 2rem;
-  padding: 1.25rem;
-  overflow: hidden;
-  color: #dedede;
-  border: 1px solid #4a4d4f;
-  background: #17191a;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
+  padding-top: 1.25rem;
+  border-top: 1px solid #353638;
+}
+.plan-related[hidden] {
+  display: none;
+}
+.plan-related > header {
+  margin-bottom: 0.8rem;
+}
+.plan-related > header p {
+  margin: 0;
+  color: #c94349;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+.plan-related > header small {
+  color: #aaa;
+}
+.plan-related h3 {
+  margin: 0.35rem 0;
+  color: #eee;
+  font: 600 clamp(1.15rem, 2.5vw, 1.6rem)/1.4 "Noto Serif JP", "Yu Mincho", serif;
+}
+.plan-related h3 span {
+  font-size: 0.75em;
+  font-weight: 500;
 }
 
-.archive-attachment[hidden] {
+.plan-sheet {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #4b4640;
+  background: #171513;
+}
+.plan-sheet > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: sepia(0.08) brightness(0.78) contrast(1.06);
+}
+
+.plan-purpose-hotspot {
+  position: absolute;
+  z-index: 2;
+  left: 2.7%;
+  bottom: 1.7%;
+  width: 45.6%;
+  height: 20.8%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: filter 0.2s, box-shadow 0.2s;
+}
+.plan-purpose-hotspot::after {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.035) 4px, transparent 5px);
+  content: "";
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.plan-purpose-hotspot:hover, .plan-purpose-hotspot:focus-visible {
+  filter: brightness(1.06);
+  box-shadow: inset 0 0 0 1px rgba(70, 49, 31, 0.2), 0 0 0.7rem rgba(255, 237, 194, 0.08);
+}
+.plan-purpose-hotspot:hover::after, .plan-purpose-hotspot:focus-visible::after {
+  opacity: 1;
+}
+.plan-purpose-hotspot:focus-visible {
+  outline: 2px solid rgba(83, 54, 35, 0.62);
+  outline-offset: 2px;
+}
+
+.plan-purpose-revealed {
+  position: absolute;
+  inset: 37% 3% 5%;
+  display: none;
+  align-items: center;
+  padding-left: 2%;
+  color: #17130e;
+  background: #c6b183;
+  font: 700 clamp(0.48rem, 1.55vw, 1.45rem)/1.45 "Noto Serif JP", "Yu Mincho", serif;
+  text-align: left;
+  letter-spacing: 0.04em;
+}
+
+.is-plan-revealed .plan-purpose-revealed {
+  display: flex;
+}
+
+.plan-note-mask {
+  position: absolute;
+  z-index: 1;
+  right: 1.9%;
+  bottom: 7.6%;
+  display: grid;
+  width: 28.5%;
+  min-height: 11.5%;
+  padding: 0.6% 1.1%;
+  color: #211b13;
+  background: #c7b38b;
+  font: 600 clamp(0.34rem, 0.85vw, 0.78rem)/1.45 "Noto Serif JP", "Yu Mincho", serif;
+  text-align: left;
+}
+
+.plan-purpose-mobile {
   display: none;
 }
 
-.archive-attachment:hover, .archive-attachment:focus-visible {
-  border-color: #8a3035;
-  background: #1d1718;
-}
-
-.archive-attachment__icon {
+.plan-project-detected {
   display: grid;
-  place-items: center;
-  width: 4rem;
-  height: 5rem;
-  color: #b7b7b7;
-  border: 1px solid #55595b;
-  background: linear-gradient(135deg, #292c2e 0 82%, #111 82%);
-  font: 700 1.2rem/1 ui-monospace, monospace;
-}
-
-.archive-attachment__body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.7rem 1.5rem;
-  min-width: 0;
-}
-
-.archive-attachment__body > small, .archive-attachment__body > strong, .archive-attachment__body > i {
-  grid-column: 1/-1;
-}
-
-.archive-attachment__body small {
-  color: #a83c42;
-  font-size: 0.875rem;
+  justify-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  color: #b5bbb8;
+  border: 1px solid #443638;
+  background: #121315;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   letter-spacing: 0.12em;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.plan-project-detected[hidden] {
+  display: none;
+}
+.plan-project-detected.is-visible {
+  opacity: 1;
+}
+.plan-project-detected strong {
+  color: #d9dcda;
+  font-size: clamp(1.15rem, 4vw, 1.8rem);
+}
+.plan-project-detected small, .plan-project-detected span {
+  color: #8f494d;
+  font-size: 0.72rem;
 }
 
-.archive-attachment__body strong {
-  overflow-wrap: anywhere;
-  color: #f0f0f0;
-  font-size: clamp(1.05rem, 3vw, 1.4rem);
+.plan-related.is-plan-cue .plan-purpose-hotspot {
+  animation: plan-purpose-cue 0.28s steps(2, end) 1;
 }
 
-.archive-attachment__body span {
-  display: grid;
-  gap: 0.15rem;
-}
-
-.archive-attachment__body b {
-  color: #898f91;
-  font-size: 0.875rem;
-}
-
-.archive-attachment__body em {
-  color: #d5d5d5;
-  font-style: normal;
-}
-
-.archive-attachment__body i {
-  color: #b54a4f;
-  font-style: normal;
-  font-weight: 700;
-}
-
-.archive-attachment.is-updating {
-  border-color: #8d252c;
-  box-shadow: 0 0 1.5rem rgba(156, 29, 38, 0.28);
-}
-
-.archive-attachment.is-updating::after {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, transparent 0 4px, rgba(255, 255, 255, 0.035) 5px, transparent 6px);
-  content: "";
-  pointer-events: none;
-  animation: archive-noise 0.18s steps(2) infinite;
-}
-
-.archive-attachment--revealed {
-  border-color: #7d282d;
-  background: #1c1415;
-}
-
-.archive-attachment--revealed .archive-attachment__icon {
-  color: #d74b52;
-  border-color: #79282d;
-}
-
-.archive-attachment--revealed .archive-attachment__body strong {
-  color: #fff;
-  letter-spacing: 0.08em;
-}
-
-@keyframes archive-noise {
-  from {
-    transform: translateY(-3px);
+@keyframes plan-purpose-cue {
+  0%, 100% {
+    filter: brightness(1);
+    transform: translate(0);
   }
-  to {
-    transform: translateY(3px);
+  35% {
+    filter: brightness(1.09) blur(0.7px);
+    transform: translate(1px, -1px);
+  }
+  70% {
+    filter: brightness(0.96);
+    transform: translate(-1px, 1px);
   }
 }
 @media (max-width: 767px) {
-  .archive-attachment {
-    grid-template-columns: 1fr;
+  .plan-related {
+    margin-right: -0.55rem;
+    margin-left: -0.55rem;
   }
-  .archive-attachment__body {
-    grid-template-columns: 1fr;
+  .plan-related > header {
+    padding: 0 0.55rem;
   }
-  .archive-attachment__body > small, .archive-attachment__body > strong, .archive-attachment__body > i {
-    grid-column: auto;
+  .plan-related h3 span {
+    display: block;
   }
-  .archive-attachment__icon {
-    width: 3.5rem;
-    height: 4.25rem;
+  .plan-purpose-hotspot {
+    display: none;
+  }
+  .plan-purpose-mobile {
+    display: grid;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 1rem;
+    color: #241d14;
+    border: 1px solid #76664d;
+    background: #c8b58e;
+    font: 600 clamp(0.86rem, 3.7vw, 1rem)/1.7 "Noto Serif JP", "Yu Mincho", serif;
+    text-align: left;
+    cursor: pointer;
+  }
+  .plan-purpose-mobile b {
+    font-size: 1.25em;
+    letter-spacing: 0.12em;
+  }
+  .plan-purpose-mobile i {
+    color: #080806;
+    font-style: normal;
+    letter-spacing: -0.08em;
+  }
+  .plan-related.is-plan-cue .plan-purpose-mobile {
+    animation: plan-purpose-cue 0.28s steps(2, end) 1;
+  }
+  .plan-note-mask {
+    font-size: clamp(0.2rem, 1.55vw, 0.45rem);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .archive-attachment.is-updating::after {
+  .plan-purpose-hotspot, .plan-purpose-hotspot::after, .plan-purpose-mobile, .plan-project-detected {
+    transition: none;
+  }
+  .plan-related.is-plan-cue .plan-purpose-hotspot, .plan-related.is-plan-cue .plan-purpose-mobile {
     animation: none;
   }
 }
