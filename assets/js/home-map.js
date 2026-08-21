@@ -14,7 +14,26 @@
       const dot = document.createElement('i'); dot.style.left = `${left.toFixed(2)}%`; dot.style.top = `${top.toFixed(2)}%`; points.append(dot);
     }
     map.append(points);
-    const openTruth = () => { progress.mark('topTruth'); progress.setPhase('truth'); location.href = 'truth.html'; };
+    let openingTruth = false;
+    const moveToTruth = () => {
+      progress.setPhase('truth');
+      location.href = 'truth.html';
+    };
+    const openTruth = () => {
+      if (openingTruth || window.SiteAlteration?.isPlaying()) return;
+      openingTruth = true;
+      if (progress.has('topTruth')) {
+        moveToTruth();
+        return;
+      }
+      const change = () => { progress.mark('topTruth'); progress.setPhase('truth'); };
+      if (window.SiteAlteration?.play) {
+        window.SiteAlteration.play({ message: 'サイトが改変されました', onChange: change, duration: 1500, changeAt: 650 }).then(moveToTruth);
+      } else {
+        change();
+        moveToTruth();
+      }
+    };
     map.addEventListener('click', openTruth);
     map.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openTruth(); } });
   });
